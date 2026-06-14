@@ -129,6 +129,33 @@ curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/
 
 This repository includes a committed Cursor project rule ([`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc)) so the same guidelines apply when you open the project in Cursor. See **[CURSOR.md](CURSOR.md)** for setup, using the rule in other projects, and how this relates to Claude Code.
 
+## Using with Reasonix
+
+Reasonix uses **project memories** (auto-load behavioral instructions) and **skills** (on-demand reference).
+
+**Option A: Project memories (recommended — automatic every session)**
+
+Save the four principles as high-priority project memories. Once set, they load into the agent's system prompt on every session start — no manual invocation needed.
+
+```reasonix
+remember("karpathy-think",      priority="high", scope="project")
+remember("karpathy-simplicity", priority="high", scope="project")
+remember("karpathy-surgical",   priority="high", scope="project")
+remember("karpathy-goal-driven",priority="high", scope="project")
+```
+
+The agent then follows Think Before Coding, Simplicity First, Surgical Changes, and Goal-Driven Execution automatically on every task.
+
+**Option B: On-demand skill**
+
+Install the full guidelines as a Reasonix skill for reference during sessions:
+
+```reasonix
+install_skill("karpathy-guidelines")
+```
+
+Then invoke `/skill karpathy-guidelines` anytime to see the complete four principles.
+
 ## Key Insight
 
 From Andrej:

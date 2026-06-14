@@ -129,6 +129,33 @@ curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/
 
 本仓库包含一个已提交的 Cursor 项目规则 ([`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc))，因此在 Cursor 中打开项目时同样适用这些指南。详情请参见 **[CURSOR.md](CURSOR.md)**，包括如何在其他项目中使用该规则，以及它与 Claude Code 的关系。
 
+## 在 Reasonix 中使用
+
+Reasonix 使用**项目记忆**（自动加载行为指令）和**技能**（按需参考）。
+
+**选项 A：项目记忆（推荐 — 每次会话自动生效）**
+
+将四条原则保存为高优先级项目记忆。保存后，每次会话启动时自动注入 agent 系统提示，无需手动调用。
+
+```reasonix
+remember("karpathy-think",      priority="high", scope="project")
+remember("karpathy-simplicity", priority="high", scope="project")
+remember("karpathy-surgical",   priority="high", scope="project")
+remember("karpathy-goal-driven",priority="high", scope="project")
+```
+
+设置后，agent 会自动在每个任务上遵循「编码前思考、简洁优先、精准修改、目标驱动执行」。
+
+**选项 B：按需技能**
+
+将完整指南安装为 Reasonix 技能，供会话中随时查阅：
+
+```reasonix
+install_skill("karpathy-guidelines")
+```
+
+之后任何时候调用 `/skill karpathy-guidelines` 即可查看完整的四条原则。
+
 ## 核心洞察
 
 来自 Andrej：
